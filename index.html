@@ -1,0 +1,1305 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>FoodieHub | Good Food - Happy Mood</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #172231;
+            background: #ffffff;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* ================= HEADER ================= */
+
+        .header {
+            height: 72px;
+            background: #15191d;
+            color: white;
+            display: flex;
+            align-items: center;
+            padding: 0 6%;
+            gap: 40px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-right: auto;
+        }
+
+        .logo-icon {
+            font-size: 38px;
+            color: #ffb914;
+        }
+
+        .logo-text b {
+            font-size: 24px;
+        }
+
+        .logo-text strong {
+            font-size: 24px;
+            color: #ffb914;
+        }
+
+        .logo-text small {
+            display: block;
+            color: #ddd;
+            font-size: 10px;
+            margin-top: 2px;
+        }
+
+        nav {
+            display: flex;
+            gap: 34px;
+            align-items: center;
+            height: 100%;
+        }
+
+        nav a {
+            color: white;
+            font-size: 14px;
+            font-weight: bold;
+            position: relative;
+        }
+
+        nav a:hover,
+        nav a.active {
+            color: #ffb914;
+        }
+
+        nav a.active::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: -12px;
+            height: 2px;
+            background: #ffb914;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+
+        .header-actions button {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 21px;
+            cursor: pointer;
+        }
+
+        .cart {
+            position: relative;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -9px;
+            background: #ffb914;
+            color: #222;
+            width: 17px;
+            height: 17px;
+            border-radius: 50%;
+            font-size: 10px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .menu-btn {
+            display: none;
+        }
+
+        /* ================= HERO ================= */
+
+        .hero {
+            min-height: 380px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    rgba(0, 0, 0, 0.88),
+                    rgba(0, 0, 0, 0.35)
+                ),
+                url("https://images.unsplash.com/photo-1563379091339-03246963d96c?auto=format&fit=crop&w=1800&q=90");
+
+            background-size: cover;
+            background-position: center;
+
+            display: flex;
+            align-items: center;
+
+            padding: 50px 6%;
+
+            color: white;
+        }
+
+        .hero-content {
+            max-width: 540px;
+        }
+
+        .eyebrow {
+            color: #ffd56a;
+            font-size: 14px;
+            margin-bottom: 12px;
+        }
+
+        .eyebrow span {
+            padding: 0 8px;
+        }
+
+        .hero h1 {
+            font-size: 52px;
+            line-height: 1.08;
+            margin-bottom: 18px;
+        }
+
+        .hero h1 span {
+            color: #ffb914;
+        }
+
+        .hero p {
+            max-width: 480px;
+            color: #eeeeee;
+            font-size: 14px;
+            line-height: 1.7;
+            margin-bottom: 25px;
+        }
+
+        .order-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 20px;
+
+            background: #ffb914;
+            color: #151515;
+
+            padding: 14px 25px;
+
+            border-radius: 30px;
+
+            font-size: 14px;
+            font-weight: bold;
+
+            transition: 0.3s;
+        }
+
+        .order-btn:hover {
+            background: #ffc94f;
+            transform: translateY(-2px);
+        }
+
+        /* ================= FEATURES ================= */
+
+        .features {
+            padding: 35px 7%;
+
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+
+            gap: 25px;
+
+            background: white;
+
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.12);
+        }
+
+        .feature {
+            display: flex;
+            gap: 15px;
+
+            padding-right: 20px;
+
+            border-right: 1px solid #e5e5e5;
+        }
+
+        .feature:last-child {
+            border-right: none;
+        }
+
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+
+            flex-shrink: 0;
+
+            border-radius: 50%;
+
+            background: #fff3cf;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 23px;
+        }
+
+        .feature h3 {
+            font-size: 13px;
+            margin-bottom: 7px;
+        }
+
+        .feature p {
+            color: #697384;
+            font-size: 11px;
+            line-height: 1.5;
+        }
+
+        /* ================= COMMON SECTION ================= */
+
+        .section {
+            padding: 55px 5.5%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .section-title h2 {
+            display: inline-block;
+            margin: 0 12px;
+
+            font-size: 30px;
+        }
+
+        .line {
+            display: inline-block;
+
+            width: 50px;
+            height: 2px;
+
+            background: #ffb914;
+
+            vertical-align: middle;
+        }
+
+        .section-title p {
+            color: #87909d;
+            font-size: 13px;
+            margin-top: 9px;
+        }
+
+        /* ================= FOOD CARDS ================= */
+
+        .food-container {
+            display: grid;
+
+            grid-template-columns: repeat(4, 1fr);
+
+            gap: 20px;
+        }
+
+        .food-card {
+            background: white;
+
+            border: 1px solid #e5e7eb;
+
+            border-radius: 9px;
+
+            overflow: hidden;
+
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.07);
+
+            transition: 0.3s;
+        }
+
+        .food-card:hover {
+            transform: translateY(-5px);
+
+            box-shadow:
+                0 10px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        .food-card img {
+            width: 100%;
+            height: 145px;
+
+            object-fit: cover;
+
+            display: block;
+        }
+
+        .food-content {
+            padding: 15px;
+        }
+
+        .food-content h3 {
+            font-size: 15px;
+            margin-bottom: 8px;
+        }
+
+        .food-content p {
+            color: #697384;
+
+            font-size: 11px;
+
+            line-height: 1.6;
+
+            min-height: 38px;
+        }
+
+        .price {
+            font-size: 15px;
+            font-weight: bold;
+
+            margin: 11px 0;
+        }
+
+        .add-cart {
+            width: 100%;
+
+            border: none;
+
+            background: #ffb914;
+
+            padding: 9px;
+
+            border-radius: 20px;
+
+            cursor: pointer;
+
+            font-weight: bold;
+
+            transition: 0.3s;
+        }
+
+        .add-cart:hover {
+            background: #ffca45;
+        }
+
+        /* ================= GALLERY ================= */
+
+        .gallery-section {
+            background: #fafafa;
+        }
+
+        .gallery {
+            display: grid;
+
+            grid-template-columns: repeat(3, 1fr);
+
+            gap: 18px;
+        }
+
+        .gallery img {
+            width: 100%;
+            height: 210px;
+
+            object-fit: cover;
+
+            border-radius: 9px;
+
+            transition: 0.3s;
+        }
+
+        .gallery img:hover {
+            transform: scale(1.03);
+        }
+
+        /* ================= FOOTER ================= */
+
+        footer {
+            background: #15191d;
+
+            color: white;
+
+            padding: 35px 5.5% 12px;
+        }
+
+        .footer-container {
+            display: grid;
+
+            grid-template-columns:
+                2fr 1fr 1fr 1.4fr;
+
+            gap: 35px;
+        }
+
+        .footer-logo {
+            font-size: 22px;
+            color: #ffb914;
+
+            margin-bottom: 7px;
+        }
+
+        .footer-logo span {
+            color: white;
+        }
+
+        footer h4 {
+            font-size: 13px;
+
+            margin-bottom: 12px;
+        }
+
+        footer p,
+        footer a {
+            display: block;
+
+            color: #ccd1d8;
+
+            font-size: 11px;
+
+            margin: 8px 0;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .social-icons a {
+            width: 30px;
+            height: 30px;
+
+            background: #27303a;
+
+            border-radius: 50%;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            color: white;
+        }
+
+        .copyright {
+            border-top: 1px solid #555;
+
+            margin-top: 25px;
+
+            padding-top: 12px;
+
+            text-align: center;
+
+            color: #bbb;
+
+            font-size: 10px;
+        }
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 1000px) {
+
+            .header {
+                padding: 0 4%;
+            }
+
+            nav {
+                gap: 20px;
+            }
+
+            .features {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .feature:nth-child(2) {
+                border-right: none;
+            }
+
+            .food-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 700px) {
+
+            .header {
+                height: 65px;
+            }
+
+            nav {
+                display: none;
+
+                position: absolute;
+
+                top: 65px;
+                left: 0;
+                right: 0;
+
+                height: auto;
+
+                background: #15191d;
+
+                flex-direction: column;
+
+                gap: 0;
+
+                padding: 10px 0;
+            }
+
+            nav.open {
+                display: flex;
+            }
+
+            nav a {
+                width: 100%;
+
+                padding: 15px 30px;
+            }
+
+            nav a.active::after {
+                display: none;
+            }
+
+            .menu-btn {
+                display: block;
+            }
+
+            .hero {
+                min-height: 450px;
+
+                padding: 50px 7%;
+            }
+
+            .hero h1 {
+                font-size: 42px;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+
+                padding: 30px 8%;
+            }
+
+            .feature {
+                border-right: none;
+
+                border-bottom: 1px solid #e5e5e5;
+
+                padding-bottom: 18px;
+            }
+
+            .feature:last-child {
+                border-bottom: none;
+            }
+        }
+
+        @media (max-width: 550px) {
+
+            .logo-icon {
+                font-size: 30px;
+            }
+
+            .logo-text b,
+            .logo-text strong {
+                font-size: 19px;
+            }
+
+            .logo-text small {
+                display: none;
+            }
+
+            .header-actions {
+                gap: 10px;
+            }
+
+            .header-actions .search {
+                display: none;
+            }
+
+            .hero {
+                min-height: 480px;
+
+                background-position: 62% center;
+            }
+
+            .hero h1 {
+                font-size: 38px;
+            }
+
+            .hero p {
+                font-size: 13px;
+            }
+
+            .section {
+                padding: 40px 5%;
+            }
+
+            .section-title h2 {
+                font-size: 25px;
+            }
+
+            .line {
+                width: 30px;
+            }
+
+            .food-container {
+                grid-template-columns: 1fr;
+            }
+
+            .food-card img {
+                height: 200px;
+            }
+
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery img {
+                height: 230px;
+            }
+
+            .footer-container {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .footer-brand {
+                grid-column: 1 / -1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ================= HEADER ================= -->
+
+    <header class="header">
+
+        <a href="#home" class="logo">
+
+            <div class="logo-icon">
+                ♨
+            </div>
+
+            <div class="logo-text">
+                <b>Foodie</b><strong>Hub</strong>
+
+                <small>
+                    Good Food • Happy Mood
+                </small>
+            </div>
+
+        </a>
+
+
+        <nav id="navigation">
+
+            <a href="#home" class="active">
+                Home
+            </a>
+
+            <a href="#menu">
+                Menu
+            </a>
+
+            <a href="#about">
+                About
+            </a>
+
+            <a href="#gallery">
+                Gallery
+            </a>
+
+            <a href="#contact">
+                Contact
+            </a>
+
+        </nav>
+
+
+        <div class="header-actions">
+
+            <button class="search">
+                ⌕
+            </button>
+
+            <button class="cart">
+                🛒
+
+                <span class="cart-count" id="cartCount">
+                    0
+                </span>
+
+            </button>
+
+            <button
+                class="menu-btn"
+                id="menuButton">
+
+                ☰
+
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <!-- ================= HERO ================= -->
+
+    <section class="hero" id="home">
+
+        <div class="hero-content">
+
+            <div class="eyebrow">
+                Fresh
+                <span>•</span>
+                Tasty
+                <span>•</span>
+                Healthy
+            </div>
+
+
+            <h1>
+                Delicious Food
+                <br>
+
+                <span>
+                    For Every Mood
+                </span>
+            </h1>
+
+
+            <p>
+                From classic favorites to exciting new flavors,
+                we bring you the best food, made with fresh
+                ingredients and a lot of love.
+            </p>
+
+
+            <a href="#menu" class="order-btn">
+
+                Order Now
+
+                <span>
+                    →
+                </span>
+
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= FEATURES ================= -->
+
+    <section class="features" id="about">
+
+        <div class="feature">
+
+            <div class="feature-icon">
+                🌿
+            </div>
+
+            <div>
+
+                <h3>
+                    Fresh Ingredients
+                </h3>
+
+                <p>
+                    We use only the freshest ingredients
+                    in our recipes.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="feature">
+
+            <div class="feature-icon">
+                👨‍🍳
+            </div>
+
+            <div>
+
+                <h3>
+                    Expert Chefs
+                </h3>
+
+                <p>
+                    Our chefs bring years of experience
+                    to your plate.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="feature">
+
+            <div class="feature-icon">
+                🚚
+            </div>
+
+            <div>
+
+                <h3>
+                    Fast Delivery
+                </h3>
+
+                <p>
+                    Hot and fresh, delivered at your
+                    doorstep.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="feature">
+
+            <div class="feature-icon">
+                ❤️
+            </div>
+
+            <div>
+
+                <h3>
+                    Customer Satisfaction
+                </h3>
+
+                <p>
+                    Your happiness is our top priority.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= MENU ================= -->
+
+    <section class="section" id="menu">
+
+        <div class="section-title">
+
+            <span class="line"></span>
+
+            <h2>
+                Popular Dishes
+            </h2>
+
+            <span class="line"></span>
+
+            <p>
+                Explore our most loved dishes,
+                made with passion and care.
+            </p>
+
+        </div>
+
+
+        <div class="food-container">
+
+
+            <!-- Chicken Biryani -->
+
+            <div class="food-card">
+
+                <img
+                    src="https://images.unsplash.com/photo-1563379091339-03246963d96c?auto=format&fit=crop&w=900&q=85"
+                    alt="Chicken Biryani">
+
+                <div class="food-content">
+
+                    <h3>
+                        Chicken Biryani
+                    </h3>
+
+                    <p>
+                        Aromatic basmati rice with tender
+                        chicken and special spices.
+                    </p>
+
+                    <div class="price">
+                        ₹199
+                    </div>
+
+                    <button class="add-cart">
+                        🛒 Add to Cart
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- Pizza -->
+
+            <div class="food-card">
+
+                <img
+                    src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=900&q=85"
+                    alt="Cheese Pizza">
+
+                <div class="food-content">
+
+                    <h3>
+                        Cheese Pizza
+                    </h3>
+
+                    <p>
+                        Classic pizza with extra cheese
+                        and fresh vegetables.
+                    </p>
+
+                    <div class="price">
+                        ₹249
+                    </div>
+
+                    <button class="add-cart">
+                        🛒 Add to Cart
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- Paneer -->
+
+            <div class="food-card">
+
+                <img
+                    src="https://images.unsplash.com/photo-1631452180519-c014fe946bc7?auto=format&fit=crop&w=900&q=85"
+                    alt="Paneer Butter Masala">
+
+                <div class="food-content">
+
+                    <h3>
+                        Paneer Butter Masala
+                    </h3>
+
+                    <p>
+                        Soft paneer cubes in rich,
+                        buttery tomato gravy.
+                    </p>
+
+                    <div class="price">
+                        ₹179
+                    </div>
+
+                    <button class="add-cart">
+                        🛒 Add to Cart
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- Salad -->
+
+            <div class="food-card">
+
+                <img
+                    src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=900&q=85"
+                    alt="Green Salad">
+
+                <div class="food-content">
+
+                    <h3>
+                        Green Salad
+                    </h3>
+
+                    <p>
+                        A healthy mix of fresh vegetables
+                        with olive oil dressing.
+                    </p>
+
+                    <div class="price">
+                        ₹99
+                    </div>
+
+                    <button class="add-cart">
+                        🛒 Add to Cart
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= GALLERY ================= -->
+
+    <section class="section gallery-section" id="gallery">
+
+        <div class="section-title">
+
+            <span class="line"></span>
+
+            <h2>
+                Food Gallery
+            </h2>
+
+            <span class="line"></span>
+
+            <p>
+                A little taste of what we serve.
+            </p>
+
+        </div>
+
+
+        <div class="gallery">
+
+            <img
+                src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1000&q=85"
+                alt="Food">
+
+            <img
+                src="https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=1000&q=85"
+                alt="Burger">
+
+            <img
+                src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1000&q=85"
+                alt="Healthy Food">
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer id="contact">
+
+        <div class="footer-container">
+
+
+            <div class="footer-brand">
+
+                <div class="footer-logo">
+
+                    ♨
+
+                    <span>
+                        Foodie
+                    </span>
+
+                    Hub
+
+                </div>
+
+                <p>
+                    Good Food • Happy Mood
+                </p>
+
+            </div>
+
+
+            <div>
+
+                <h4>
+                    Quick Links
+                </h4>
+
+                <a href="#home">
+                    Home
+                </a>
+
+                <a href="#menu">
+                    Menu
+                </a>
+
+                <a href="#about">
+                    About
+                </a>
+
+                <a href="#contact">
+                    Contact
+                </a>
+
+            </div>
+
+
+            <div>
+
+                <h4>
+                    Follow Us
+                </h4>
+
+                <div class="social-icons">
+
+                    <a href="#">
+                        f
+                    </a>
+
+                    <a href="#">
+                        ◎
+                    </a>
+
+                    <a href="#">
+                        ♥
+                    </a>
+
+                    <a href="#">
+                        ▶
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div>
+
+                <h4>
+                    Contact Us
+                </h4>
+
+                <p>
+                    ☎ +91 98765 43210
+                </p>
+
+                <p>
+                    ✉ hello@foodiehub.com
+                </p>
+
+                <p>
+                    📍 Visakhapatnam, AP
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="copyright">
+
+            © 2025 FoodieHub.
+            All rights reserved.
+
+        </div>
+
+    </footer>
+
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <script>
+
+        /* Mobile Navigation */
+
+        const menuButton =
+            document.getElementById("menuButton");
+
+        const navigation =
+            document.getElementById("navigation");
+
+
+        menuButton.addEventListener(
+            "click",
+            function () {
+
+                navigation.classList.toggle("open");
+
+            }
+        );
+
+
+        /* Shopping Cart */
+
+        let cartCount = 0;
+
+        const cartCounter =
+            document.getElementById("cartCount");
+
+
+        const buttons =
+            document.querySelectorAll(".add-cart");
+
+
+        buttons.forEach(function(button) {
+
+            button.addEventListener(
+                "click",
+                function() {
+
+                    cartCount++;
+
+                    cartCounter.textContent =
+                        cartCount;
+
+                    button.textContent =
+                        "✓ Added";
+
+                    setTimeout(
+                        function() {
+
+                            button.textContent =
+                                "🛒 Add to Cart";
+
+                        },
+                        900
+                    );
+
+                }
+            );
+
+        });
+
+
+        /* Close Mobile Menu */
+
+        const navLinks =
+            document.querySelectorAll("#navigation a");
+
+
+        navLinks.forEach(function(link) {
+
+            link.addEventListener(
+                "click",
+                function() {
+
+                    navigation.classList.remove("open");
+
+                }
+            );
+
+        });
+
+    </script>
+
+</body>
+</html>
+```
+
